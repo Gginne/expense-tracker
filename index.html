@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/980d129aa5.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Budgetting App</title>
+
+    <style>
+        .btn {
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body id="home" class="grey lighten-4">
+
+    <header>
+
+    </header>
+    <main>
+        <div class="row">
+            <div class="col s12 m12 l4">
+                <!--Form Component-->
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Add Expense</span>
+                        <div class="row">
+                            <div class="input-field col s8">
+                                <input type="text" placeholder="Title" id="title">
+                            </div>
+                            <div class="input-field col s4">
+                                <input type="number" placeholder="Amount" id="amount">
+                            </div>
+                            <div class="input-field col s8">
+                                <input type="date" placeholder="Date" id="date">
+                            </div>
+                            <div class="input-field col s4">
+                                <select id='type'>
+                                    <option value="" disabled selected>Type</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Leisure">Leisure</option>
+                                    <option value="Housing">Housing</option>
+                                    <option value="Transportation">Transportation</option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s12">
+                                    <a href="#" class="btn green accent-3 white-text waves-light" id="add-btn">
+                                        <i class="fas fa-plus"></i> Add</a>
+                                    <a href="#" class="btn orange accent-3 white-text waves-light" id="clear-btn">
+                                        <i class="fas fa-trash-alt"></i> Clear</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Chart Component-->
+                <div class="card">
+                    <div class="card-content">
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col s12 m12 l8">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <span class="card-title">Expenses</span>
+                                    </div>
+                                    <div class="col s6">
+                                        <select id='sort'>
+                                            <option value="" disabled selected>Sort</option>
+                                            <option value="Food">Food</option>
+                                            <option value="Leisure">Leisure</option>
+                                            <option value="Housing">Housing</option>
+                                            <option value="Transportation">Transportation</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <table id="expense-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="expense-table-body">
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
