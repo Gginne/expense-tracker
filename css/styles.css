@@ -1,0 +1,13 @@
+@media(max-width: 768px){
+    .flex-cont {
+        display: flex;
+        flex-direction: column; /* Stack on top */
+      }
+      .flex-comp-a {
+        order: 2; /* Go down, bring Box B up */
+      }
+}
+
+.btn {
+    border-radius: 50px;
+}

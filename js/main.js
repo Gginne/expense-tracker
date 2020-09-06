@@ -1,0 +1,266 @@
+//Materialize
+$(document).ready(function(){
+    $('select').formSelect();
+});
+
+//Chart Control
+const chartCtrl = (function(){
+    const ctx = document.getElementById('myChart');
+    const options = {
+        responsive: true,
+        legend: {
+            display: true,
+            position: "bottom",
+            labels: {
+              fontColor: "#333",
+              fontSize: 16
+            }
+     }
+    }
+    return{
+        buildChart: function(data){
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(data),
+                    datasets: [{
+                        label: 'Expenses',
+                        data: Object.values(data),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: options
+            });
+        }
+    }
+ 
+})()
+
+//Data Control
+
+const dataCtrl = (function () {
+    let data = {
+        items: []
+    }
+
+    //Generate unique ID for expense
+    const createID = () => {
+        if (data.items.length === 0) {
+            return 1
+        } else {
+            //Map all current IDs
+            let ids = data.items.map(item => item.id)
+            //Sort all the IDs on ascending order
+            let sorted = ids.sort((a, b) => a - b)
+            //Return latest ID + 1 as new ID
+            return sorted[sorted.length - 1] + 1
+        }
+    }
+
+    //Expense Constructor
+    const Expense = function (title, amount, date, type) {
+        this.title = title
+        this.amount = Number(amount)
+        this.date = date
+        this.type = type
+        this.id = createID()
+    }
+
+
+    //Public Methods
+    return {
+        //Console Log Data
+        logData: () => console.log(data),
+        //Get items
+        getItems: () => data.items,
+        //Get categories
+        getCategories: () => {
+            let categories = {}
+            data.items.forEach(item => {
+                categories[item.type] = categories.hasOwnProperty(item.type) ? 
+                categories[item.type] + item.amount : item.amount        
+            })
+            return categories
+        },
+        //Add Items
+        addItem(title, amount, date, type){
+            data.items.push(new Expense(title, amount, date, type))
+        },
+        //Delete Item
+        deleteItem(id){
+            let index = null
+            data.items.forEach(item => {
+                if (item.id == id) {
+                    index = data.items.indexOf(item)
+                }
+            })
+            data.items.splice(index, 1)
+        },
+        //Sort items by price
+        sortItemByPrice(option){
+            return (data.items.sort((a, b) => option === 'descending' ? 
+            b.amount - a.amount : 
+            a.amount - b.amount))
+        },
+        //Clear Data
+        clearItems(){
+            data.items = []
+        }
+
+    }
+})()
+
+const UICtrl = (function () {
+    const UISelectors = {
+        title: '#title',
+        amount: '#amount',
+        date: '#date',
+        type: '#type',
+        table: '#expense-table',
+        tbody: '#expense-table-body',
+        addBtn: '#add-btn',
+        clearBtn: '#clear-btn',
+        deleteBtn: 'delete-btn'
+    }
+
+    return {
+
+        updateUI(items){
+            let html = ''
+            items.forEach(item => {
+                html += `<tr id='${item.id}'>
+                <td>${item.title}</td>
+                <td>${item.type}</td>
+                <td>$${item.amount}</td>
+                <td>${item.date}</td>
+                <td><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i><a></td>
+                
+                </tr>`
+            });
+            document.querySelector(UISelectors.tbody).innerHTML = html
+        },
+        clearFields(){
+            document.querySelector(UISelectors.title).value = ''
+            document.querySelector(UISelectors.amount).value = ''
+            document.querySelector(UISelectors.date).value = ''
+            document.querySelector(UISelectors.type).value = ''
+        },
+        getSelectors: () => UISelectors,
+        getValues(){
+            return {
+                title: document.querySelector(UISelectors.title).value,
+                amount: document.querySelector(UISelectors.amount).value,
+                date: document.querySelector(UISelectors.date).value,
+                type: document.querySelector(UISelectors.type).value
+            }
+        },
+
+
+    }
+
+})()
+
+const app = (function (dataCtrl, UICtrl, chartCtrl) {
+
+    //Get UI Selectors
+    const UISelectors = UICtrl.getSelectors()
+
+    //Event Listeners
+    const loadEventListeners = function(){
+        //Add Button
+        document.querySelector(UISelectors.addBtn).addEventListener('click', submitItemData)
+        //Clear Button
+        document.querySelector(UISelectors.clearBtn).addEventListener('click', clearItemData)
+        //Delete Button
+        document.querySelector(UISelectors.tbody).addEventListener('click', deleteItemData)
+    }
+
+    //Submit data from input fields
+    const submitItemData = function(e){
+        //Get input values
+        const values = UICtrl.getValues()
+
+        //Add new expense to data
+        if (values.title !== '' && parseInt(values.amount) > 0 && values.date !== '' && values.type !== '') {
+
+            //Create new item and add to data
+            dataCtrl.addItem(values.title, values.amount, values.date, values.type)
+
+            //Clear Fields
+            UICtrl.clearFields()
+        }
+        //Update UI
+        UICtrl.updateUI(dataCtrl.getItems())
+
+        //Update Chart
+        chartCtrl.buildChart(dataCtrl.getCategories())
+        e.preventDefault()
+    }
+
+    //Clear Data and Update UI
+    const clearItemData = function(e){
+        //Clear items from data
+        dataCtrl.clearItems()
+
+        //Update UI
+        UICtrl.updateUI(dataCtrl.getItems())
+
+        //Update Chart
+        chartCtrl.buildChart(dataCtrl.getCategories())
+
+        //Clear fields
+        UICtrl.clearFields()
+
+        e.preventDefault()
+    }
+
+    //Delete Expense item and Update UI
+    const deleteItemData = function(e){
+        if (e.target.parentElement.classList.contains('delete-btn')) {
+            //Get Item ID
+            let ID = e.target.parentElement.parentElement.parentElement.id
+
+            //Delete ID from data
+            dataCtrl.deleteItem(ID)
+
+            //Update UI
+            UICtrl.updateUI(dataCtrl.getItems())
+
+            //Update Chart
+            chartCtrl.buildChart(dataCtrl.getCategories())
+        }
+        e.preventDefault()
+    }
+
+
+
+    return {
+        init(){
+
+            UICtrl.updateUI(dataCtrl.getItems())
+
+            //Event Listeners
+            loadEventListeners()
+
+            //Build chart
+            chartCtrl.buildChart(dataCtrl.getCategories())
+
+        }
+
+    }
+
+})(dataCtrl, UICtrl, chartCtrl)
+
+app.init()
