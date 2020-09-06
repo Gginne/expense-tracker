@@ -52,7 +52,9 @@ const chartCtrl = (function(){
 
 const dataCtrl = (function () {
     let data = {
-        items: []
+        items: [
+            {id: 1, title: "McDonalds Burger", amount: 15.52, type: "Food", date: "9-05-2020"}
+        ]
     }
 
     //Generate unique ID for expense
@@ -129,7 +131,7 @@ const UICtrl = (function () {
         date: '#date',
         type: '#type',
         table: '#expense-table',
-        tbody: '#expense-table-body',
+        tbody: '#expense-list',
         addBtn: '#add-btn',
         clearBtn: '#clear-btn',
         deleteBtn: 'delete-btn'
@@ -140,14 +142,15 @@ const UICtrl = (function () {
         updateUI(items){
             let html = ''
             items.forEach(item => {
-                html += `<tr id='${item.id}'>
-                <td>${item.title}</td>
-                <td>${item.type}</td>
-                <td>$${item.amount}</td>
-                <td>${item.date}</td>
-                <td><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i><a></td>
+                html += `<div class="card expense" id='${item.id}'>
+                <span><b>${item.title}</b></span>
+                <span>${item.amount}</span>
+                <span>${item.type}</span>
+                <span>${item.date}</span>
+              
+                <span><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i><a></span>
                 
-                </tr>`
+                </div>`
             });
             document.querySelector(UISelectors.tbody).innerHTML = html
         },

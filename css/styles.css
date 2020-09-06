@@ -11,3 +11,14 @@
 .btn {
     border-radius: 50px;
 }
+
+#expense-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.expense{
+  padding: 1.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
