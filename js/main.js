@@ -53,7 +53,6 @@ const chartCtrl = (function(){
 const dataCtrl = (function () {
     let data = {
         items: [
-            {id: 1, title: "McDonalds Burger", amount: 15.52, type: "Food", date: "9-05-2020"}
         ]
     }
 
@@ -148,7 +147,7 @@ const UICtrl = (function () {
                 <span>${item.type}</span>
                 <span>${item.date}</span>
               
-                <span><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i><a></span>
+                <span><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i></a></span>
                 
                 </div>`
             });
