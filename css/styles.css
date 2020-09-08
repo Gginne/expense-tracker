@@ -17,8 +17,16 @@
   flex-direction: column;
 }
 
+#sidebar{
+  margin: auto 0;
+}
+
 .expense{
   padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
+}
+
+.expense span{
+  width: 20%;
 }
