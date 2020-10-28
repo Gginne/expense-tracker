@@ -30,3 +30,8 @@
 .expense span{
   width: 20%;
 }
+
+.card{
+  box-shadow: none!important;
+  border: 1px solid lightgray!important;
+}
