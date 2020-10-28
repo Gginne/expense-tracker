@@ -18,6 +18,28 @@ body{
   overflow: hidden;
 }
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgrey; 
+  transition: all 1s ease-in;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .btn {
     border-radius: 50px;
 }
@@ -37,8 +59,11 @@ body{
   justify-content: space-between;
 }
 
+.expense{
+  width: 100%;
+}
 .expense span{
-  width: 20%;
+  width: 50%;
 }
 
 .card{
@@ -46,7 +71,6 @@ body{
 }
 .expense-container{
   margin-top: 0;
-  overflow:scroll;
-  overflow-x: hidden;
-  min-height: 100vh;
+  overflow-y: scroll;
+  height: 100vh;
 }
