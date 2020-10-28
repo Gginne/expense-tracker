@@ -8,6 +8,16 @@
       }
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  overflow: hidden;
+}
+
 .btn {
     border-radius: 50px;
 }
@@ -29,4 +39,14 @@
 
 .expense span{
   width: 20%;
+}
+
+.card{
+  box-shadow: none!important;
+}
+.expense-container{
+  margin-top: 0;
+  overflow:scroll;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
