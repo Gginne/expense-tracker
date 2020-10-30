@@ -17,38 +17,43 @@
     <main class="container">
         <div class="row">
             <div class="col s12 m3 l4">
-                <div class="card" id="sidebar">
-                    <ul class="collection">
-                        <li class="collection-item">
-                            <select id='sort'>
-                                <option value="" disabled selected>By type</option>
-                                <option value="Food">Food</option>
-                                <option value="Leisure">Leisure</option>
-                                <option value="Housing">Housing</option>
-                                <option value="Transportation">Transportation</option>
-                            </select>
-                        </li>
-                        <li class="collection-item">
-                            <select id='sort-amount'>
-                                <option value="" disabled selected>By amount</option>
-                                <option value="Increasing">Increasing</option>
-                                <option value="Decreasing">Decreasing</option>
-                            </select>
-                        </li>
-                        <li class="collection-item">
-                            <select id='sort-date'>
-                                <option value="" disabled selected>By date</option>
-                                <option value="Early">Earliest</option>
-                                <option value="Latest">Latest</option>
-                            </select>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                <div class="card-content">
-                        <canvas id="myChart" width="400" height="400"></canvas>
+                    <div class="card chart-container">
+                            <div class="card-content">
+                                <canvas id="myChart" width="300" height="300"></canvas>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col s4 m12 l12">
+                            <div class="card">
+                                <select class="sort" id='sort-type'>
+                                    <option value="" disabled selected>By type</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Leisure">Leisure</option>
+                                    <option value="Housing">Housing</option>
+                                    <option value="Transportation">Transportation</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col s4 m12 l12">
+                            <div class="card">
+                                <select class="sort" id='sort-amount'>
+                                    <option value="" disabled selected>By amount</option>
+                                    <option value="Increasing">Increasing</option>
+                                    <option value="Decreasing">Decreasing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col s4 m12 l12">
+                            <div class="card">
+                                <select class="sort" id='sort-date'>
+                                    <option value="" disabled selected>By date</option>
+                                    <option value="Early">Earliest</option>
+                                    <option value="Latest">Latest</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                
             </div>
             <div class="col s12 m9 l7">
                 <div class="expense-container white">

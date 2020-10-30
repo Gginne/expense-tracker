@@ -74,3 +74,10 @@ body{
   overflow-y: scroll;
   height: 100vh;
 }
+
+.chart-container{
+  height: 300px;
+}
+.sort{
+  padding: 1rem!important;
+}
