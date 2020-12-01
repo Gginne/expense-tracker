@@ -8,46 +8,66 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/980d129aa5.js"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Expense Tracker</title>
 </head>
 
-<body id="home" class="grey lighten-4">
+<body id="home" class="bg-light">
 
-    <main class="container">
+    <main class="container mt-3">
         <div class="row">
             <!--Form & Chart-->
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-4 mb-2">
                 <div class="row">
                     <!--Form-->
-                    <div class="col-sm-12 col-md-12">
-                        
+                    <div class="col-sm-5 col-md-12">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input class="form-control w-50" id="title" aria-describedby="expenseTitle" placeholder="Expense Title"> 
+                                    <input type="number" class="form-control" id="amount" min="0.00" step="0.01" placeholder="$0.00">  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="date" class="form-control w-50" id="date" value="Date.now()">
+                                    <select class="form-control" id="type">
+                                        <option value="" disabled selected>Type</option>
+                                        <option value="food">Food</option>
+                                        <option value="transport">Transport</option>
+                                        <option value="leisure">Leisure</option>
+                                        <option value="home">Home</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                            <button class="btn btn-success btn-lg btn-block my-3" id="add-btn">Add</button>
+                        </form>
                     </div>
                     <!--Chart-->
-                    <div class="col-sm-12 col-md-12">
-
+                    <div class="col-sm-7 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="myChart" width="400" height="300"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!--Expenses-->
             <div class="col-sm-12 col-md-8">
-
+                <div class="card">
+                    <div class="card-body" id="exp-list">
+                        
+                    </div>
+                </div>
             </div>
         </div>
-     
-    <!--Chart Component
-        <div class="card chart-container">
-                    <div class="card-content">
-                        <canvas id="myChart" width="400" height="400"></canvas>
-                    </div>
-            <div>
-        
-    -->
         
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="./js/main.js"></script>
 </body>

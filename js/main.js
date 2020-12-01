@@ -1,8 +1,3 @@
-//Materialize
-$(document).ready(function(){
-    $('select').formSelect();
-});
-
 //Chart Control
 const chartCtrl = (function(){
     const ctx = document.getElementById('myChart');
@@ -129,7 +124,6 @@ const UICtrl = (function () {
         amount: '#amount',
         date: '#date',
         type: '#type',
-        table: '#exp-table',
         tbody: '#exp-list',
         addBtn: '#add-btn',
         clearBtn: '#clear-btn',
@@ -200,9 +194,11 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
             //Create new item and add to data
             dataCtrl.addItem(values.title, values.amount, values.date, values.type)
 
+            console.log(values.title, values.amount, values.date, values.type)
             //Clear Fields
             UICtrl.clearFields()
         }
+        
         //Update UI
         UICtrl.updateUI(dataCtrl.getItems())
 

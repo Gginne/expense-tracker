@@ -14,11 +14,6 @@
   box-sizing: border-box;
 }
 
-body{
-  overflow: hidden;
-}
-
-
 /* width */
 ::-webkit-scrollbar {
   width: 7px;
@@ -69,7 +64,7 @@ body{
 .card{
   box-shadow: none!important;
 }
-.expense-container{
+.expense-list{
   margin-top: 0;
   overflow-y: scroll;
   height: 100vh;
