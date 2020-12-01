@@ -129,11 +129,11 @@ const UICtrl = (function () {
         amount: '#amount',
         date: '#date',
         type: '#type',
-        table: '#expense-table',
-        tbody: '#expense-list',
+        table: '#exp-table',
+        tbody: '#exp-list',
         addBtn: '#add-btn',
         clearBtn: '#clear-btn',
-        deleteBtn: 'delete-btn'
+        deleteBtn: '#delete-btn'
     }
 
     return {

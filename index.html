@@ -16,92 +16,34 @@
 
     <main class="container">
         <div class="row">
-            <div class="col s12 m3 l4">
-                    <div class="card chart-container">
-                            <div class="card-content">
-                                <canvas id="myChart" width="300" height="300"></canvas>
-                            </div>
-                        </div>
-                    <div class="row">
-                        <div class="col s4 m12 l12">
-                            <div class="card">
-                                <select class="sort" id='sort-type'>
-                                    <option value="" disabled selected>By type</option>
-                                    <option value="Food">Food</option>
-                                    <option value="Leisure">Leisure</option>
-                                    <option value="Housing">Housing</option>
-                                    <option value="Transportation">Transportation</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col s4 m12 l12">
-                            <div class="card">
-                                <select class="sort" id='sort-amount'>
-                                    <option value="" disabled selected>By amount</option>
-                                    <option value="Increasing">Increasing</option>
-                                    <option value="Decreasing">Decreasing</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col s4 m12 l12">
-                            <div class="card">
-                                <select class="sort" id='sort-date'>
-                                    <option value="" disabled selected>By date</option>
-                                    <option value="Early">Earliest</option>
-                                    <option value="Latest">Latest</option>
-                                </select>
-                            </div>
-                        </div>
+            <!--Form & Chart-->
+            <div class="col-sm-12 col-md-4">
+                <div class="row">
+                    <!--Form-->
+                    <div class="col-sm-12 col-md-12">
+                        
                     </div>
-                
-            </div>
-            <div class="col s12 m9 l7">
-                <div class="expense-container white">
-                    <form class="card expense-form">
-                        <div class="card-content">
-                            <span class="card-title">Add Expense</span>
-                            <div class="row">
-                                <div class="input-field col s8">
-                                    <input type="text" placeholder="Title" id="title">
-                                </div>
-                                <div class="input-field col s4">
-                                    <input type="number" placeholder="Amount" id="amount">
-                                </div>
-                                <div class="input-field col s8">
-                                    <input type="date" placeholder="Date" id="date">
-                                </div>
-                                <div class="input-field col s4">
-                                    <select id='type'>
-                                        <option value="" disabled selected>Type</option>
-                                        <option value="Food">Food</option>
-                                        <option value="Leisure">Leisure</option>
-                                        <option value="Housing">Housing</option>
-                                        <option value="Transportation">Transportation</option>
-                                    </select>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s12">
-                                        <a href="#" class="btn green accent-3 white-text waves-light" id="add-btn">
-                                            <i class="fas fa-plus"></i> Add</a>
-                                        <a href="#" class="btn orange accent-3 white-text waves-light" id="clear-btn">
-                                            <i class="fas fa-trash-alt"></i> Clear</a>
-                                    </div>
-                                </div>
-                    </form>
-                    <div class="expenses" id="expense-list">
+                    <!--Chart-->
+                    <div class="col-sm-12 col-md-12">
 
                     </div>
                 </div>
             </div>
+            <!--Expenses-->
+            <div class="col-sm-12 col-md-8">
 
-
-            <!--Chart Component
-              
-                
-                    -->
+            </div>
         </div>
-
+     
+    <!--Chart Component
+        <div class="card chart-container">
+                    <div class="card-content">
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+            <div>
+        
+    -->
+        
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
