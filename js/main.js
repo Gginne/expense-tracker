@@ -189,7 +189,7 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
         const values = UICtrl.getValues()
 
         //Add new expense to data
-        if (values.title !== '' && parseInt(values.amount) > 0 && values.date !== '' && values.type !== '') {
+        if (values.title !== '' && Number(values.amount) > 0.0 && values.date !== '' && values.type !== '') {
 
             //Create new item and add to data
             dataCtrl.addItem(values.title, values.amount, values.date, values.type)
