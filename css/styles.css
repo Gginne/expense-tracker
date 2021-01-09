@@ -52,14 +52,17 @@
   padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
+  border-bottom: 0.5px solid #eeeeee;
 }
 
-.expense{
-  width: 100%;
-}
 .expense span{
-  width: 50%;
+  width: 27.5%
 }
+
+.expense a{
+  width: 5%
+}
+
 
 .card{
   box-shadow: none!important;

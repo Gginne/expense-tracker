@@ -135,13 +135,13 @@ const UICtrl = (function () {
         updateUI(items){
             let html = ''
             items.forEach(item => {
-                html += `<div class="card expense" id='${item.id}'>
+                html += `<div class="expense" id='${item.id}'>
                 <span><b>${item.title}</b></span>
                 <span>${item.amount}</span>
                 <span>${item.type}</span>
                 <span>${item.date}</span>
               
-                <span><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i></a></span>
+                <a href='#' class='text-danger delete-btn'><i class="fas fa-trash-alt"></i></a>
                 
                 </div>`
             });
