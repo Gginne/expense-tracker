@@ -5,112 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/980d129aa5.js"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
     <title>Expense Tracker</title>
 </head>
 
-<body id="home" class="grey lighten-4">
+<body id="home" class="bg-light">
 
-    <header>
-
-    </header>
-    <main>
-        <div class="row flex-cont">
-            <!--Table Component-->
-            <div class="col s12 m12 l8 flex-comp-a">
-                <div class="row">
-                    <div class="col s12 m12 l12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col s4">
-                                        <select id='sort'>
-                                            <option value="" disabled selected>By type</option>
-                                            <option value="Food">Food</option>
-                                            <option value="Leisure">Leisure</option>
-                                            <option value="Housing">Housing</option>
-                                            <option value="Transportation">Transportation</option>
-                                        </select>
-                                    </div>
-                                    <div class="col s4">
-                                        <select id='sort-amount'>
-                                            <option value="" disabled selected>By amount</option>
-                                            <option value="Increasing">Increasing</option>
-                                            <option value="Decreasing">Decreasing</option>
-                                            
-                                        </select>
-                                    </div>
-                                    <div class="col s4">
-                                        <select id='sort-date'>
-                                            <option value="" disabled selected>By date</option>
-                                            <option value="Early">Earliest</option>
-                                            <option value="Latest">Latest</option>
-                                            
-                                        </select>
-                                    </div>
+    <main class="container mt-3">
+        <div class="row">
+            <!--Form & Chart-->
+            <div class="col-sm-12 col-md-4 mb-2">
+                <div class="row" id="side">
+                    <!--Form-->
+                    <div class="col-sm-12 col-md-12">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input class="form-control w-50" id="title" aria-describedby="expenseTitle" placeholder="Expense Title"> 
+                                    <input type="number" class="form-control" id="amount" min="0.00" step="0.01" placeholder="$0.00">  
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div id="expense-list">
-
-
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="date" class="form-control w-50" id="date" value="">
+                                    <select class="form-control" id="type">
+                                        <option value="" disabled selected>Type</option>
+                                        <option value="food">Food</option>
+                                        <option value="transport">Transport</option>
+                                        <option value="leisure">Leisure</option>
+                                        <option value="home">Home</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group my-3">
+                                <button class="btn btn-success mx-1" id="add-btn">Add</button>
+                                <button class="btn btn-warning mx-1" id="clear-btn">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Chart-->
+                    <div class="col-sm-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="myChart" width="400" height="400"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m12 l4 flex-comp-b side-nav">
-                <!--Form Component-->
-                <div class="card" id="sidebar">
-                    <div class="card-content">
-                        <span class="card-title">Add Expense</span>
-                        <div class="row">
-                            <div class="input-field col s8">
-                                <input type="text" placeholder="Title" id="title">
-                            </div>
-                            <div class="input-field col s4">
-                                <input type="number" placeholder="Amount" id="amount">
-                            </div>
-                            <div class="input-field col s8">
-                                <input type="date" placeholder="Date" id="date">
-                            </div>
-                            <div class="input-field col s4">
-                                <select id='type'>
-                                    <option value="" disabled selected>Type</option>
-                                    <option value="Food">Food</option>
-                                    <option value="Leisure">Leisure</option>
-                                    <option value="Housing">Housing</option>
-                                    <option value="Transportation">Transportation</option>
-                                </select>
-                            </div>
-
-                            <div class="row">
-                                <div class="col s12">
-                                    <a href="#" class="btn green accent-3 white-text waves-light" id="add-btn">
-                                        <i class="fas fa-plus"></i> Add</a>
-                                    <a href="#" class="btn orange accent-3 white-text waves-light" id="clear-btn">
-                                        <i class="fas fa-trash-alt"></i> Clear</a>
-                                </div>
-                            </div>
-                        </div>
+            <!--Expenses-->
+            <div class="col-sm-12 col-md-8">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <form class="form-inline mx-auto">
+                        <select class="form-control m-1" id="sort-amount">
+                            <option>By Amount</option>
+                            <option value="amount-ascending">Ascending</option>
+                            <option value="amount-descending">Descending</option>
+                          </select>
+                        <select class="form-control m-1" id="sort-date">
+                            <option>By Date</option>
+                            <option value="date-ascending">Ascending</option>
+                            <option value="date-descending">Descending</option>
+                        </select>
+                        <select class="form-control m-1" id="sort-type">
+                            <option>By Type</option>
+                        </select>
+                        <button class="btn btn-info my-1 ml-auto">Sort Expenses</button>
+                    </form>
                     </div>
-                    <hr>
-                    <!--Chart Component-->
-              
-                    <div class="card-content">
-                        <canvas id="myChart" width="350" height="350"></canvas>
+                    <div class="card-body" id="exp-list">
+                        
                     </div>
                 </div>
-
             </div>
         </div>
+        
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="./js/main.js"></script>
 </body>

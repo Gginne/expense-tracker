@@ -8,6 +8,33 @@
       }
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgrey; 
+  transition: all 1s ease-in;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888; 
+}
+
 .btn {
     border-radius: 50px;
 }
@@ -25,13 +52,37 @@
   padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
+  border-bottom: 0.5px solid #eeeeee;
 }
 
 .expense span{
-  width: 20%;
+  width: 27.5%
 }
+
+.expense a{
+  width: 5%
+}
+
 
 .card{
   box-shadow: none!important;
-  border: 1px solid lightgray!important;
 }
+.expense-list{
+  margin-top: 0;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.chart-container{
+  height: 300px;
+}
+.sort{
+  padding: 1rem!important;
+}
+
+#myChart{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.

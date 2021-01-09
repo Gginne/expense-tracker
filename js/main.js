@@ -1,8 +1,3 @@
-//Materialize
-$(document).ready(function(){
-    $('select').formSelect();
-});
-
 //Chart Control
 const chartCtrl = (function(){
     const ctx = document.getElementById('myChart');
@@ -129,11 +124,10 @@ const UICtrl = (function () {
         amount: '#amount',
         date: '#date',
         type: '#type',
-        table: '#expense-table',
-        tbody: '#expense-list',
+        tbody: '#exp-list',
         addBtn: '#add-btn',
         clearBtn: '#clear-btn',
-        deleteBtn: 'delete-btn'
+        deleteBtn: '#delete-btn'
     }
 
     return {
@@ -141,13 +135,13 @@ const UICtrl = (function () {
         updateUI(items){
             let html = ''
             items.forEach(item => {
-                html += `<div class="card expense" id='${item.id}'>
+                html += `<div class="expense" id='${item.id}'>
                 <span><b>${item.title}</b></span>
                 <span>${item.amount}</span>
                 <span>${item.type}</span>
                 <span>${item.date}</span>
               
-                <span><a href='#' class='red-text delete-btn'><i class="fas fa-trash-alt"></i></a></span>
+                <a href='#' class='text-danger delete-btn'><i class="fas fa-trash-alt"></i></a>
                 
                 </div>`
             });
@@ -195,14 +189,16 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
         const values = UICtrl.getValues()
 
         //Add new expense to data
-        if (values.title !== '' && parseInt(values.amount) > 0 && values.date !== '' && values.type !== '') {
+        if (values.title !== '' && Number(values.amount) > 0.0 && values.date !== '' && values.type !== '') {
 
             //Create new item and add to data
             dataCtrl.addItem(values.title, values.amount, values.date, values.type)
 
+            console.log(values.title, values.amount, values.date, values.type)
             //Clear Fields
             UICtrl.clearFields()
         }
+        
         //Update UI
         UICtrl.updateUI(dataCtrl.getItems())
 
