@@ -120,12 +120,21 @@ const dataCtrl = (function (storageCtrl) {
             storageCtrl.set(data.items)
         },
         //Sort items by price
-        sortItemByAmount(option){
-            if(option === "" ) return;
+        sortItemByAmount(data, option){
+            if(option === "" ){
+                return data
+            }
 
-            data.items.sort((a, b) => option === 'descending' ? 
+            return (data.sort((a, b) => option === 'descending' ? 
             b.amount - a.amount : 
-            a.amount - b.amount)
+            a.amount - b.amount))
+        },
+        sortItemByType(data, option){
+            if(option === "" ){
+                return data
+            }
+
+            return data.filter(expense => expense.type == option)
         },
         //Clear Data
         clearItems(){
@@ -275,8 +284,11 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
         const date = UICtrl.getSelectorValue("sortDate")
         const type = UICtrl.getSelectorValue("sortType")
 
-        dataCtrl.sortItemByAmount(amount)
-        UICtrl.updateUI(dataCtrl.getItems())
+        let sorted = dataCtrl.getItems()
+
+        sorted = dataCtrl.sortItemByAmount(sorted, amount)
+        sorted = dataCtrl.sortItemByType(sorted, type)
+        UICtrl.updateUI(sorted)
     }
 
 
