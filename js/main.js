@@ -42,13 +42,26 @@ const chartCtrl = (function(){
     }
  
 })()
+//LocalStorage Control
+const storageCtrl = (function(){
 
+    return {
+        set(data){
+            localStorage.setItem("expenses", JSON.stringify(data))
+        },
+        get(){
+            return JSON.parse(localStorage.getItem("expenses") || "[]")
+        },
+        clear(){
+            localStorage.clear()
+        }
+    }
+})()
 //Data Control
 
-const dataCtrl = (function () {
+const dataCtrl = (function (storageCtrl) {
     let data = {
-        items: [
-        ]
+        items: storageCtrl.get()
     }
 
     //Generate unique ID for expense
@@ -93,6 +106,7 @@ const dataCtrl = (function () {
         //Add Items
         addItem(title, amount, date, type){
             data.items.push(new Expense(title, amount, date, type))
+            storageCtrl.set(data.items)
         },
         //Delete Item
         deleteItem(id){
@@ -103,6 +117,7 @@ const dataCtrl = (function () {
                 }
             })
             data.items.splice(index, 1)
+            storageCtrl.set(data.items)
         },
         //Sort items by price
         sortItemByPrice(option){
@@ -113,10 +128,11 @@ const dataCtrl = (function () {
         //Clear Data
         clearItems(){
             data.items = []
+            storageCtrl.clear()
         }
 
     }
-})()
+})(storageCtrl)
 
 const UICtrl = (function () {
     const UISelectors = {
