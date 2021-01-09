@@ -120,10 +120,12 @@ const dataCtrl = (function (storageCtrl) {
             storageCtrl.set(data.items)
         },
         //Sort items by price
-        sortItemByPrice(option){
-            return (data.items.sort((a, b) => option === 'descending' ? 
+        sortItemByAmount(option){
+            if(option === "" ) return;
+
+            data.items.sort((a, b) => option === 'descending' ? 
             b.amount - a.amount : 
-            a.amount - b.amount))
+            a.amount - b.amount)
         },
         //Clear Data
         clearItems(){
@@ -174,6 +176,9 @@ const UICtrl = (function () {
             document.querySelector(UISelectors.type).value = ''
         },
         getSelectors: () => UISelectors,
+        getSelectorValue(selector){
+            return document.querySelector(UISelectors[selector]).value
+        },
         getValues(){
             return {
                 title: document.querySelector(UISelectors.title).value,
@@ -262,6 +267,16 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
             chartCtrl.buildChart(dataCtrl.getCategories())
         }
         e.preventDefault()
+    }
+
+    const sortItemData = function(e){
+        e.preventDefault()
+        const amount = UICtrl.getSelectorValue("sortAmount")
+        const date = UICtrl.getSelectorValue("sortDate")
+        const type = UICtrl.getSelectorValue("sortType")
+
+        dataCtrl.sortItemByAmount(amount)
+        UICtrl.updateUI(dataCtrl.getItems())
     }
 
 
