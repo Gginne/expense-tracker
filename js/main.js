@@ -143,7 +143,11 @@ const UICtrl = (function () {
         tbody: '#exp-list',
         addBtn: '#add-btn',
         clearBtn: '#clear-btn',
-        deleteBtn: '#delete-btn'
+        deleteBtn: '#delete-btn',
+        sortBtn: "#sort-btn",
+        sortAmount: "#sort-amount",
+        sortDate: "#sort-date",
+        sortType: "#sort-type"
     }
 
     return {
@@ -197,6 +201,8 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
         document.querySelector(UISelectors.clearBtn).addEventListener('click', clearItemData)
         //Delete Button
         document.querySelector(UISelectors.tbody).addEventListener('click', deleteItemData)
+        //Sort Button
+        document.querySelector(UISelectors.sortBtn).addEventListener('click', sortItemData)
     }
 
     //Submit data from input fields
