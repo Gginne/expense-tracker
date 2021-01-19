@@ -120,10 +120,21 @@ const dataCtrl = (function (storageCtrl) {
             storageCtrl.set(data.items)
         },
         //Sort items by price
-        sortItemByPrice(option){
-            return (data.items.sort((a, b) => option === 'descending' ? 
+        sortItemByAmount(data, option){
+            if(option === "" ){
+                return data
+            }
+
+            return (data.sort((a, b) => option === 'descending' ? 
             b.amount - a.amount : 
             a.amount - b.amount))
+        },
+        sortItemByType(data, option){
+            if(option === "" ){
+                return data
+            }
+
+            return data.filter(expense => expense.type == option)
         },
         //Clear Data
         clearItems(){
@@ -143,7 +154,11 @@ const UICtrl = (function () {
         tbody: '#exp-list',
         addBtn: '#add-btn',
         clearBtn: '#clear-btn',
-        deleteBtn: '#delete-btn'
+        deleteBtn: '#delete-btn',
+        sortBtn: "#sort-btn",
+        sortAmount: "#sort-amount",
+        sortDate: "#sort-date",
+        sortType: "#sort-type"
     }
 
     return {
@@ -170,6 +185,9 @@ const UICtrl = (function () {
             document.querySelector(UISelectors.type).value = ''
         },
         getSelectors: () => UISelectors,
+        getSelectorValue(selector){
+            return document.querySelector(UISelectors[selector]).value
+        },
         getValues(){
             return {
                 title: document.querySelector(UISelectors.title).value,
@@ -197,6 +215,8 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
         document.querySelector(UISelectors.clearBtn).addEventListener('click', clearItemData)
         //Delete Button
         document.querySelector(UISelectors.tbody).addEventListener('click', deleteItemData)
+        //Sort Button
+        document.querySelector(UISelectors.sortBtn).addEventListener('click', sortItemData)
     }
 
     //Submit data from input fields
@@ -256,6 +276,19 @@ const app = (function (dataCtrl, UICtrl, chartCtrl) {
             chartCtrl.buildChart(dataCtrl.getCategories())
         }
         e.preventDefault()
+    }
+
+    const sortItemData = function(e){
+        e.preventDefault()
+        const amount = UICtrl.getSelectorValue("sortAmount")
+        const date = UICtrl.getSelectorValue("sortDate")
+        const type = UICtrl.getSelectorValue("sortType")
+
+        let sorted = dataCtrl.getItems()
+
+        sorted = dataCtrl.sortItemByAmount(sorted, amount)
+        sorted = dataCtrl.sortItemByType(sorted, type)
+        UICtrl.updateUI(sorted)
     }
 
 
